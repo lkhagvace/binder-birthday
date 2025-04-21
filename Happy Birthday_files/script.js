@@ -1,7 +1,3 @@
-var sf = new Snowflakes({
-  color: "#ffd700",
-  minSize: 20,
-});
 var url_string = window.location.href; //window.location.href
 var url = new URL(url_string);
 var c = url.searchParams.get("name");
@@ -12,7 +8,7 @@ if (c != null) {
 }
 $("#play").click(function () {
   $(".loader").fadeOut("slow");
-  sf.destroy();
+
   $(".balloon-border").animate(
     {
       top: -500,
@@ -74,6 +70,27 @@ var retina = window.devicePixelRatio,
 })(window);
 
 document.addEventListener("DOMContentLoaded", function () {
+  HeartSnow.start({
+    color: "#ff69b4", // cute pink hearts
+    maxSize: 20,
+    minSize: 10,
+    newOn: 300,
+    zIndex: 9999,
+  });
+
+  $("#play").click(function () {
+    $(".loader").fadeOut("slow");
+    HeartSnow.stop(); // 💖 stop the heart snow
+    $(".balloon-border").animate(
+      {
+        top: -500,
+      },
+      8000
+    );
+    var audio = $(".song")[0];
+    audio.play();
+  });
+
   var speed = 50,
     duration = 1.0 / speed,
     confettiRibbonCount = 10,
@@ -89,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ["#2bebbc", "#05798a"],
       ["#ffd200", "#b06c00"],
     ];
+  document.getElementById("play").style.backgroundColor = "#ff5733";
 
   function Vector2(_x, _y) {
     (this.x = _x), (this.y = _y);

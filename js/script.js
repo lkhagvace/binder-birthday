@@ -76,6 +76,14 @@ var retina = window.devicePixelRatio,
 })(window);
 
 document.addEventListener("DOMContentLoaded", function () {
+  HeartSnow.start({
+    color: "#ff69b4", // cute pink hearts
+    maxSize: 20,
+    minSize: 10,
+    newOn: 300,
+    zIndex: 9999,
+  });
+
   var speed = 50,
     duration = 1.0 / speed,
     confettiRibbonCount = 10,
